@@ -1,7 +1,7 @@
 import { test, expect } from "../../fixtures/pom-fixtures";
 import invalidLoginData from "../../test-data/login-data.json";
 
-test.describe("Authentication Engine", () => {
+test.describe("Authentication Tests", () => {
   test.beforeEach(async ({ loginPage }) => {
     await loginPage.navigate();
   });
@@ -28,8 +28,29 @@ test.describe("Authentication Engine", () => {
       // Passes the data directly from the JSON object
       await loginPage.login(data.username, data.password);
 
-      // Asserts the specific error message defined for that scenario
-      await loginPage.assertLoginError(data.expectedError);
+      // Asserts the specific error message AND passes the error type
+      await loginPage.assertLoginError(
+        data.expectedError,
+        data.errorType as "global" | "inline",
+      );
     });
   }
+
+  test("should render all critical UI elements on the login page", async ({
+    loginPage,
+  }) => {
+    // The test now reads like plain English
+    await loginPage.assertCriticalElementsLoaded();
+  });
+
+  test("should match the visual layout of the login page", async ({
+    loginPage,
+    page,
+  }) => {
+    // Wait for the page to be fully loaded and stable
+    await loginPage.usernameInput.waitFor({ state: "visible" });
+
+    // Capture a screenshot and compare it pixel-by-pixel
+    await expect(page).toHaveScreenshot("login-page-layout.png");
+  });
 });

@@ -13,8 +13,10 @@ import path from "path";
 /**
  * See https://playwright.dev/docs/test-configuration.
  */
-dotenv.config({ path: path.resolve(__dirname, ".env") });
-
+dotenv.config({
+  path: path.resolve(__dirname, ".env"),
+  quiet: true,
+});
 export default defineConfig({
   testDir: "./tests",
   /* Run tests in files in parallel */

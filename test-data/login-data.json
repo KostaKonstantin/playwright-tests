@@ -3,12 +3,14 @@
     "testCase": "Invalid Password",
     "username": "Admin",
     "password": "wrongpassword123",
-    "expectedError": "Invalid credentials"
+    "expectedError": "Invalid credentials",
+    "errorType": "global"
   },
   {
     "testCase": "Empty Username",
     "username": "",
     "password": "admin123",
-    "expectedError": "Required"
+    "expectedError": "Required",
+    "errorType": "inline"
   }
 ]
