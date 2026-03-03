@@ -1,6 +1,9 @@
 import { test, expect } from "../../fixtures/pom-fixtures";
 import invalidLoginData from "../../test-data/login-data.json";
 
+// Override the global storage state just for this file (anonymous user)
+test.use({ storageState: { cookies: [], origins: [] } });
+
 test.describe("Authentication Tests", () => {
   test.beforeEach(async ({ loginPage }) => {
     await loginPage.navigate();

@@ -2,11 +2,11 @@ import { Page, Locator, expect } from "@playwright/test";
 
 export class LoginPage {
   readonly page: Page;
-  readonly companyLogo: Locator; // New
+  readonly companyLogo: Locator;
   readonly usernameInput: Locator;
   readonly passwordInput: Locator;
   readonly loginButton: Locator;
-  readonly forgotPasswordLink: Locator; // New
+  readonly forgotPasswordLink: Locator;
   readonly globalErrorMessage: Locator;
   readonly inlineFieldError: Locator;
   constructor(page: Page) {

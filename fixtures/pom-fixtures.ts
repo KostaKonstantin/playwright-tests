@@ -1,19 +1,21 @@
 import { test as base } from "@playwright/test";
 import { LoginPage } from "../page-objects/LoginPage";
+import { DashboardPage } from "../page-objects/DashboardPage";
 
 type MyFixtures = {
   loginPage: LoginPage;
+  dashboardPage: DashboardPage;
 };
 
 export const test = base.extend<MyFixtures>({
   loginPage: async ({ page }, use) => {
-    // Set up the fixture
     const loginPage = new LoginPage(page);
 
-    // Use the fixture in the test
     await use(loginPage);
+  },
 
-    // Teardown can go here if needed
+  dashboardPage: async ({ page }, use) => {
+    await use(new DashboardPage(page));
   },
 });
 
