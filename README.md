@@ -14,14 +14,12 @@ This repository serves as a portfolio piece demonstrating advanced automation st
 
 ## 📂 Project Structure
 
-\`\`\`text
-├── fixtures/               # Custom Playwright fixtures (POM injection)
-├── page-objects/           # Encapsulated locators and page methods
-├── test-data/              # JSON files for data-driven testing
-├── tests/                  # End-to-end test specs
-├── playwright.config.ts    # Global Playwright configuration
-└── .env                    # Local environment variables (Gitignored)
-\`\`\`
+* 📁 **fixtures/** — Custom Playwright test runner extensions for POM injection
+* 📁 **page-objects/** — Encapsulated UI locators and page actions
+* 📁 **test-data/** — JSON files for data-driven testing (DDT)
+* 📁 **tests/** — The actual end-to-end spec files
+* 📄 **playwright.config.ts** — Global framework configuration and browser matrix
+* 📄 **.env** — Local environment variables (Gitignored for security)
 
 ## 🚀 Getting Started
 
