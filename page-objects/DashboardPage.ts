@@ -4,6 +4,7 @@ export class DashboardPage {
   readonly page: Page;
   readonly headerTitle: Locator;
   readonly userProfileDropdown: Locator;
+  readonly pimLink: Locator;
 
   constructor(page: Page) {
     this.page = page;
@@ -11,13 +12,13 @@ export class DashboardPage {
     this.headerTitle = page.getByRole("heading", { name: "Dashboard" });
     // Falling back to a stable class for the user profile name
     this.userProfileDropdown = page.locator(".oxd-userdropdown-name");
+
+    this.pimLink = page.getByRole("link", { name: "PIM" });
   }
 
   async navigate() {
     // Navigating directly to the protected route
-    await this.page.goto(
-      "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index",
-    );
+    await this.page.goto("/web/index.php/dashboard/index");
   }
 
   async assertOnDashboard() {
@@ -28,5 +29,9 @@ export class DashboardPage {
 
   async assertUserProfileIsVisible() {
     await expect(this.userProfileDropdown).toBeVisible();
+  }
+
+  async openPIM() {
+    await this.pimLink.click();
   }
 }

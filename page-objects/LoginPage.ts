@@ -22,9 +22,11 @@ export class LoginPage {
   }
 
   async navigate() {
-    await this.page.goto(
-      "https://opensource-demo.orangehrmlive.com/web/index.php/auth/login",
-    );
+    await this.page.goto("/web/index.php/dashboard/index", {
+      waitUntil: "networkidle",
+    });
+
+    await this.usernameInput.waitFor({ state: "visible" });
   }
 
   async login(username: string, password: string) {
