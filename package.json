@@ -1,17 +1,40 @@
 {
   "name": "playwright-tests",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "type": "module",
-  "description": "",
-  "main": "index.js",
-  "scripts": {},
-  "keywords": [],
+  "description": "Enterprise Playwright automation framework for OrangeHRM",
+  "scripts": {
+    "test": "playwright test --project=chromium --project=api",
+    "test:smoke": "playwright test --grep @smoke --project=chromium --project=api",
+    "test:regression": "playwright test --grep @regression --project=chromium",
+    "test:auth": "playwright test --grep @auth --project=chromium",
+    "test:admin": "playwright test --grep @admin --project=chromium",
+    "test:pim": "playwright test --grep @pim --project=chromium",
+    "test:leave": "playwright test --grep @leave --project=chromium",
+    "test:api": "playwright test --project=api",
+    "test:visual": "playwright test --project=visual",
+    "test:visual:update": "playwright test --project=visual --update-snapshots",
+    "test:ui": "playwright test --ui",
+    "test:headed": "playwright test --headed --project=chromium",
+    "test:debug": "playwright test --debug --project=chromium",
+    "report:html": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report"
+  },
+  "keywords": [
+    "playwright",
+    "automation",
+    "testing",
+    "typescript",
+    "orangehrm"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",
     "@playwright/test": "^1.58.2",
     "@types/node": "^25.3.3",
+    "allure-playwright": "^3.6.0",
     "dotenv": "^17.3.1"
   }
 }

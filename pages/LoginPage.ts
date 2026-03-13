@@ -9,23 +9,20 @@ export class LoginPage {
   readonly forgotPasswordLink: Locator;
   readonly globalErrorMessage: Locator;
   readonly inlineFieldError: Locator;
+
   constructor(page: Page) {
     this.page = page;
-    // Using resilient, user-facing locators
     this.companyLogo = page.getByAltText("company-branding");
-    this.usernameInput = page.locator('input[name="username"]');
-    this.passwordInput = page.locator('input[name="password"]');
-    this.loginButton = page.locator('button[type="submit"]');
+    this.usernameInput = page.getByRole("textbox", { name: "Username" });
+    this.passwordInput = page.getByRole("textbox", { name: "Password" });
+    this.loginButton = page.getByRole("button", { name: "Login" });
     this.forgotPasswordLink = page.getByText("Forgot your password?");
     this.globalErrorMessage = page.locator(".oxd-alert-content-text");
     this.inlineFieldError = page.locator(".oxd-input-field-error-message");
   }
 
   async navigate() {
-    await this.page.goto("/web/index.php/dashboard/index", {
-      waitUntil: "networkidle",
-    });
-
+    await this.page.goto("/web/index.php/auth/login");
     await this.usernameInput.waitFor({ state: "visible" });
   }
 
@@ -41,20 +38,17 @@ export class LoginPage {
   ) {
     if (errorType === "global") {
       await expect(this.globalErrorMessage).toHaveText(expectedMessage);
-    } else if (errorType === "inline") {
-      // Using .first() in case both fields are empty and there are two messages
-      await expect(this.inlineFieldError.first()).toHaveText(expectedMessage);
     } else {
-      throw new Error(`Unsupported errorType: ${errorType}`);
+      await expect(this.inlineFieldError.first()).toHaveText(expectedMessage);
     }
   }
+
   async assertCriticalElementsLoaded() {
     await expect.soft(this.companyLogo).toBeVisible();
     await expect.soft(this.usernameInput).toBeVisible();
     await expect.soft(this.passwordInput).toBeVisible();
     await expect.soft(this.loginButton).toBeVisible();
     await expect.soft(this.forgotPasswordLink).toBeVisible();
-
     await expect.soft(this.usernameInput).toBeEmpty();
     await expect.soft(this.passwordInput).toBeEmpty();
   }
