@@ -214,14 +214,16 @@ push / PR
 
 Matrix parallelisation runs chromium and API tests simultaneously on separate runners, cutting total CI time roughly in half.
 
-### Required GitHub secrets
+### GitHub secrets (optional for the public demo)
 
-Add these in **Settings → Secrets and variables → Actions**:
+The framework falls back to the public OrangeHRM demo credentials when the secrets are not set, so CI works out of the box on a fresh fork.
 
-| Secret | Value |
-|---|---|
-| `ORANGE_USERNAME` | `Admin` |
-| `ORANGE_PASSWORD` | `admin123` |
+To target a **private** OrangeHRM instance, add these in **Settings → Secrets and variables → Actions**:
+
+| Secret | Default fallback | Purpose |
+|---|---|---|
+| `ORANGE_USERNAME` | `Admin` | Login username |
+| `ORANGE_PASSWORD` | `admin123` | Login password |
 
 ### Artifacts produced per run
 

@@ -4,8 +4,8 @@ import { faker } from "@faker-js/faker";
 
 export const credentials = {
   admin: {
-    username: process.env.ORANGE_USERNAME ?? "Admin",
-    password: process.env.ORANGE_PASSWORD ?? "admin123",
+    username: process.env.ORANGE_USERNAME || "Admin",
+    password: process.env.ORANGE_PASSWORD || "admin123",
   },
   invalidPassword: {
     username: "Admin",
