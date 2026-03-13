@@ -53,9 +53,11 @@ export default defineConfig({
     },
 
     // Main UI test suite – runs with pre-authenticated browser context
+    // Excludes @visual tests: those require committed baselines and run via the visual project
     {
       name: "chromium",
       testMatch: /tests\/(auth|dashboard|pim|admin|leave)\/.+\.spec\.ts/,
+      grepInvert: /@visual/,
       use: {
         ...devices["Desktop Chrome"],
         storageState: "playwright/.auth/user.json",
